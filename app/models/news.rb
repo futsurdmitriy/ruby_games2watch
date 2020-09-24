@@ -1,4 +1,4 @@
 class News < ApplicationRecord
-  belongs_to :author
   belongs_to :game
+  has_many :comments
 end
