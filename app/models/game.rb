@@ -1,3 +1,8 @@
 class Game < ApplicationRecord
-  belongs_to :requirement
+  has_many :requirement
+  has_many :news
+  has_many :game_modes
+  has_many :modes, through: :game_modes
+  has_many :game_platforms
+  has_many :platforms, through: :game_platforms
 end
