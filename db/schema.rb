@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_193625) do
+ActiveRecord::Schema.define(version: 2020_09_24_194035) do
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
@@ -46,10 +46,8 @@ ActiveRecord::Schema.define(version: 2020_09_24_193625) do
     t.string "genre"
     t.string "company"
     t.string "publisher"
-    t.integer "requirement_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["requirement_id"], name: "index_games_on_requirement_id"
   end
 
   create_table "modes", force: :cascade do |t|
@@ -104,7 +102,6 @@ ActiveRecord::Schema.define(version: 2020_09_24_193625) do
   add_foreign_key "game_modes", "modes"
   add_foreign_key "game_platforms", "games"
   add_foreign_key "game_platforms", "platforms"
-  add_foreign_key "games", "requirements"
   add_foreign_key "news", "authors"
   add_foreign_key "requirements", "games"
 end
