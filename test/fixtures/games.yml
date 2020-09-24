@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  critics_rate: 1
+  genre: MyString
+  company: MyString
+  publisher: MyString
+  requirement: one
+
+two:
+  name: MyString
+  critics_rate: 1
+  genre: MyString
+  company: MyString
+  publisher: MyString
+  requirement: two
