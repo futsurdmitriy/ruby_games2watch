@@ -1,0 +1,38 @@
+<h2>Games List</h2>
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Critics rate</td>
+        <td>Genre</td>
+        <td>Company</td>
+        <td>Publisher</td>
+        <td>Published At</td>
+        <td>Created At</td>
+        <td>Updated At</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+        <% @games.each do |game| %>
+            <tr>
+                <td><%= game.name %></td>
+                <td><%= game.critics_rate %></td>
+                <td><%= game.genre %></td>
+                <td><%= game.company %></td>
+                <td><%= game.publisher %></td>
+                <td><%= game.published_at.strftime('%Y-%m-%d') %></td>
+                <td><%= game.created_at.strftime('%Y-%m-%d %T') %></td>
+                <td><%= game.updated_at.strftime('%Y-%m-%d %T') %></td>
+                <td>
+                    <a href="#">Show</a> |
+                    <a href="#">Update</a> |
+                    <a href="#">Delete</a>
+                </td>
+            </tr>
+        <% end %>
+        <tr>
+            <td><a href="games/new">Create game</a></td>
+        </tr>
+    </tbody>
+</table>
