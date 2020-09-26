@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  has_many :requirement
+  has_many :requirements
   has_many :news
   has_many :game_modes
   has_many :modes, through: :game_modes

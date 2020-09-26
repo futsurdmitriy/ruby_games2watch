@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_202758) do
+ActiveRecord::Schema.define(version: 2020_09_26_152659) do
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_202758) do
     t.string "publisher"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "published_at"
   end
 
   create_table "modes", force: :cascade do |t|
@@ -73,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_202758) do
   end
 
   create_table "requirements", force: :cascade do |t|
-    t.string "type"
+    t.string "req_type"
     t.string "operating_system"
     t.integer "ram"
     t.string "gpu"
