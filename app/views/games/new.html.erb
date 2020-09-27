@@ -4,44 +4,51 @@
         <p style="color: red"><%= error %></p>
     <% end %>
 <% end %>
-
-<%= form_with(url: "/admin/games/", method: "post") do %>
+<%= form_with model: @new_game, url: "/admin/games/", method: "post" do |game_form|%>
     <p>
         <%= label_tag(:name, "Name") %>
-        <%= text_field(:game, :name) %>
+        <%= game_form.text_field :name, value: @new_game.name %>
     </p>
     <p>
         <%= label_tag(:critics_rate, "Critics rate") %>
-        <%= number_field(:game, :critics_rate) %>
+        <%= game_form.number_field :critics_rate, value: @new_game.critics_rate %>
     </p>
     <p>
         <%= label_tag(:genre, "Genre") %>
-        <%= text_field(:game, :genre) %>
+        <%= game_form.text_field :genre, value: @new_game.genre %>
     </p>
     <p>
         <%= label_tag(:company, "Company") %>
-        <%= text_field(:game, :company) %>
+        <%= game_form.text_field :company, value: @new_game.company %>
     </p>
     <p>
         <%= label_tag(:publisher, "Publisher") %>
-        <%= text_field(:game, :publisher) %>
+        <%= game_form.text_field :publisher, value: @new_game.publisher %>
     </p>
     <p>
         <%= label_tag(:published_at, "Published at") %>
-        <%= date_field(:game, :published_at) %>
+        <%= game_form.date_field :published_at, value: @new_game.published_at %>
     </p>
     <p>
         <%= label_tag(:modes, "Modes") %>
         <% modes_array = Mode.all.map {
             |mode| [mode.name + " (" + mode.maximum_players.to_s + ")", mode.id]
         } %>
-        <%= select(:game, :mode, options_for_select(modes_array), {}, { multiple: true} ) %>
+        <%= game_form.select :modes,
+                             options_for_select(modes_array),
+                             { include_blank: false, include_hidden: false },
+                             { multiple: true }  %>
     </p>
     <p>
-        <%= label_tag(:platform, "Platforms") %>
-        <%= collection_select(:game, :platform, Platform.all, :id, :name, {}, {multiple: true}) %>
+        <%= label_tag(:platforms, "Platforms") %>
+        <%= game_form.collection_select :platforms,
+                                        Platform.all,
+                                        :id,
+                                        :name,
+                                        { include_blank: false, include_hidden: false },
+                                        { multiple: true } %>
     </p>
     <p>
-        <%= submit_tag("Create") %>
+        <%= game_form.submit "Create" %>
     </p>
 <% end %>
