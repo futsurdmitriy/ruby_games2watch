@@ -1,73 +1,47 @@
 <h2>New game</h2>
-<form action="/admin/games" method="post">
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+        <p style="color: red"><%= error %></p>
+    <% end %>
+<% end %>
+
+<%= form_with(url: "/admin/games/", method: "post") do %>
     <p>
-        <label>Name</label>
-        <input type="text" name="games[name]"/>
+        <%= label_tag(:name, "Name") %>
+        <%= text_field(:game, :name) %>
     </p>
     <p>
-        <label>Critics rate</label>
-        <input type="number" name="games[critics_rate]"/>
+        <%= label_tag(:critics_rate, "Critics rate") %>
+        <%= number_field(:game, :critics_rate) %>
     </p>
     <p>
-        <label>Genre</label>
-        <input type="text" name="games[genre]"/>
+        <%= label_tag(:genre, "Genre") %>
+        <%= text_field(:game, :genre) %>
     </p>
     <p>
-        <label>Company</label>
-        <input type="text" name="games[company]"/>
+        <%= label_tag(:company, "Company") %>
+        <%= text_field(:game, :company) %>
     </p>
     <p>
-        <label>Publisher</label>
-        <input type="text" name="games[publisher]"/>
+        <%= label_tag(:publisher, "Publisher") %>
+        <%= text_field(:game, :publisher) %>
     </p>
     <p>
-        <label>Published at</label>
-        <input type="date" name="games[published_at]"/>
+        <%= label_tag(:published_at, "Published at") %>
+        <%= date_field(:game, :published_at) %>
     </p>
     <p>
-        <label>Modes</label>
-        <select name="games[modes]" multiple>
-            <% @modes.each do |mode| %>
-                <option value="<%= mode.id %>">
-                    <%= mode.name + " (" + mode.maximum_players.to_s + ")"%>
-                </option>
-            <% end %>
-        </select>
+        <%= label_tag(:modes, "Modes") %>
+        <% modes_array = Mode.all.map {
+            |mode| [mode.name + " (" + mode.maximum_players.to_s + ")", mode.id]
+        } %>
+        <%= select(:game, :mode, options_for_select(modes_array), {}, { multiple: true} ) %>
     </p>
     <p>
-        <label>Platforms</label>
-        <select name="games[platforms]" multiple>
-            <% @platforms.each do |platform| %>
-                <option value="<%= platform.id %>">
-                    <%= platform.name %>
-                </option>
-            <% end %>
-        </select>
-    </p>
-    <!--<h3>Requirements</h3>
-    <p>
-        <label>Type</label>
-        <input type="text" name="requirements[req_type]"/>
+        <%= label_tag(:platform, "Platforms") %>
+        <%= collection_select(:game, :platform, Platform.all, :id, :name, {}, {multiple: true}) %>
     </p>
     <p>
-        <label>OS</label>
-        <input type="text" name="requirements[operating_system]"/>
+        <%= submit_tag("Create") %>
     </p>
-    <p>
-        <label>RAM</label>
-        <input type="number" name="requirements[ram]"/>
-    </p>
-    <p>
-        <label>CPU</label>
-        <input type="text" name="requirements[cpu]"/>
-    </p>
-    <p>
-        <label>GPU</label>
-        <input type="text" name="requirements[gpu]"/>
-    </p>
-    <p>
-        <label>Free Space</label>
-        <input type="number" name="requirements[free_space]"/>
-    </p>-->
-    <input type="submit" value="Create">
-</form>
+<% end %>
