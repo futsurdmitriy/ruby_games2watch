@@ -3,6 +3,7 @@ class GamesController < ApplicationController
     @games = Game.all
   end
   def new
-
+    @modes = Mode.all
+    @platforms = Platform.all
   end
 end

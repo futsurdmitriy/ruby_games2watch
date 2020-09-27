@@ -1,15 +1,73 @@
-<h2>New action</h2>
-<form>
+<h2>New game</h2>
+<form action="/admin/games" method="post">
     <p>
         <label>Name</label>
         <input type="text" name="games[name]"/>
     </p>
     <p>
         <label>Critics rate</label>
-        <input type="number" name="games[critics_rate]" min="0" max="100"/>
+        <input type="number" name="games[critics_rate]"/>
     </p>
     <p>
         <label>Genre</label>
         <input type="text" name="games[genre]"/>
     </p>
+    <p>
+        <label>Company</label>
+        <input type="text" name="games[company]"/>
+    </p>
+    <p>
+        <label>Publisher</label>
+        <input type="text" name="games[publisher]"/>
+    </p>
+    <p>
+        <label>Published at</label>
+        <input type="date" name="games[published_at]"/>
+    </p>
+    <p>
+        <label>Modes</label>
+        <select name="games[modes]" multiple>
+            <% @modes.each do |mode| %>
+                <option value="<%= mode.id %>">
+                    <%= mode.name + " (" + mode.maximum_players.to_s + ")"%>
+                </option>
+            <% end %>
+        </select>
+    </p>
+    <p>
+        <label>Platforms</label>
+        <select name="games[platforms]" multiple>
+            <% @platforms.each do |platform| %>
+                <option value="<%= platform.id %>">
+                    <%= platform.name %>
+                </option>
+            <% end %>
+        </select>
+    </p>
+    <!--<h3>Requirements</h3>
+    <p>
+        <label>Type</label>
+        <input type="text" name="requirements[req_type]"/>
+    </p>
+    <p>
+        <label>OS</label>
+        <input type="text" name="requirements[operating_system]"/>
+    </p>
+    <p>
+        <label>RAM</label>
+        <input type="number" name="requirements[ram]"/>
+    </p>
+    <p>
+        <label>CPU</label>
+        <input type="text" name="requirements[cpu]"/>
+    </p>
+    <p>
+        <label>GPU</label>
+        <input type="text" name="requirements[gpu]"/>
+    </p>
+    <p>
+        <label>Free Space</label>
+        <input type="number" name="requirements[free_space]"/>
+    </p>-->
+    <input type="submit" value="Create">
 </form>
