@@ -5,10 +5,20 @@ class GamesController < ApplicationController
 
   def new
     @new_game = Game.new
+    @new_game_mode_ids = []
+    @new_game_platform_ids = []
     if session[:new_game]
       @new_game = Game.new(session[:new_game])
     end
+    if session[:new_game_mode_ids] && session[:new_game_platform_ids]
+      @new_game_mode_ids = session[:new_game_mode_ids]
+      @new_game_platform_ids = session[:new_game_platform_ids]
+    end
+
     session.delete(:new_game)
+    session.delete(:new_game_mode_ids)
+    session.delete(:new_game_platform_ids)
+
     @modes = Mode.all
     @platforms = Platform.all
   end
@@ -38,12 +48,10 @@ class GamesController < ApplicationController
       redirect_to "/admin/games"
     else
       flash[:errors] = g.errors.full_messages
-      # game[:name] = params[:game][:name]
-
-      # redirect_to "/admin/games/new"
       session[:new_game] = g
+      session[:new_game_mode_ids] = g.modes.map { |mode| mode.id }
+      session[:new_game_platform_ids] = g.platforms.map { |platform| platform.id }
       redirect_to controller: 'games', action: 'new'
-      # render controller: 'games', action: 'new'
     end
   end
 

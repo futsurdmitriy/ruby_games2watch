@@ -35,7 +35,7 @@
             |mode| [mode.name + " (" + mode.maximum_players.to_s + ")", mode.id]
         } %>
         <%= game_form.select :modes,
-                             options_for_select(modes_array),
+                             options_for_select(modes_array, @new_game_mode_ids),
                              { include_blank: false, include_hidden: false },
                              { multiple: true }  %>
     </p>
@@ -45,7 +45,7 @@
                                         Platform.all,
                                         :id,
                                         :name,
-                                        { include_blank: false, include_hidden: false },
+                                        { include_blank: false, include_hidden: false, selected: @new_game_platform_ids},
                                         { multiple: true} %>
     </p>
     <p>
