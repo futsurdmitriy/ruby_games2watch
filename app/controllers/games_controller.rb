@@ -4,7 +4,11 @@ class GamesController < ApplicationController
   end
 
   def new
-    @new_game = Game.new(session[:new_game]) || Game.new
+    @new_game = Game.new
+    if session[:new_game]
+      @new_game = Game.new(session[:new_game])
+    end
+    session.delete(:new_game)
     @modes = Mode.all
     @platforms = Platform.all
   end
