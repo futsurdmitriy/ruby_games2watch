@@ -1,6 +1,6 @@
 <h2>New game</h2>
-<% if flash[:errors] %>
-    <% flash[:errors].each do |error| %>
+<% if @new_game.errors.full_messages %>
+    <% @new_game.errors.full_messages.each do |error| %>
         <p style="color: red"><%= error %></p>
     <% end %>
 <% end %>
