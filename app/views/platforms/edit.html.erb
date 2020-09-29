@@ -1,0 +1,15 @@
+<h2>Edit platform</h2>
+<% if @platform_to_edit.errors.full_messages %>
+    <% @platform_to_edit.errors.full_messages.each do |error| %>
+        <p style="color: red"><%= error %></p>
+    <% end %>
+<% end %>
+<%= form_with model: @platform_to_edit, url: "/admin/platforms/#{@platform_to_edit.id}", method: "patch", local: true do |game_form| %>
+    <p>
+        <%= label_tag(:name, "Name") %>
+        <%= game_form.text_field :name, value: @platform_to_edit.name %>
+    </p>
+    <p>
+        <%= game_form.submit "Update" %>
+    </p>
+<% end %>

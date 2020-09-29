@@ -1,0 +1,15 @@
+<h2>New platform</h2>
+<% if @new_platform.errors.full_messages %>
+    <% @new_platform.errors.full_messages.each do |error| %>
+        <p style="color: red"><%= error %></p>
+    <% end %>
+<% end %>
+<%= form_with model: @new_platform, url: "/admin/platforms", method: "post", local: true do |platform_form| %>
+    <p>
+        <%= label_tag(:name, "Name") %>
+        <%= platform_form.text_field :name, value: @new_platform.name %>
+    </p>
+    <p>
+        <%= platform_form.submit "Create" %>
+    </p>
+<% end %>

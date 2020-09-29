@@ -1,0 +1,29 @@
+<% content_for(:title, "Platforms") %>
+<h2>Platforms List</h2>
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Created At</td>
+        <td>Updated At</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+        <% @platforms.each do |platform| %>
+            <tr>
+                <td><%= platform.name %></td>
+                <td><%= platform.created_at.strftime('%Y-%m-%d %T') %></td>
+                <td><%= platform.updated_at.strftime('%Y-%m-%d %T') %></td>
+                <td>
+                    <a href="/admin/platforms/<%= platform.id %>">Show</a> |
+                    <a href="/admin/platforms/<%= platform.id %>/edit">Update</a> |
+                    <a href="/admin/platforms/<%= platform.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
+                </td>
+            </tr>
+        <% end %>
+        <tr>
+            <td><a href="/admin/platforms/new">Create platform</a></td>
+        </tr>
+    </tbody>
+</table>
