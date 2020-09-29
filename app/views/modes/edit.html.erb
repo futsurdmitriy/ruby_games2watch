@@ -1,0 +1,19 @@
+<h2>Edit mode</h2>
+<% if @mode_to_edit.errors.full_messages %>
+    <% @mode_to_edit.errors.full_messages.each do |error| %>
+        <p style="color: red"><%= error %></p>
+    <% end %>
+<% end %>
+<%= form_with model: @mode_to_edit, url: "/admin/modes/#{@mode_to_edit.id}", method: "patch", local: true do |mode_form| %>
+    <p>
+        <%= label_tag(:name, "Name") %>
+        <%= mode_form.text_field :name, value: @mode_to_edit.name %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Maximum number of players") %>
+        <%= mode_form.number_field :maximum_players, value: @mode_to_edit.maximum_players %>
+    </p>
+    <p>
+        <%= mode_form.submit "Update" %>
+    </p>
+<% end %>

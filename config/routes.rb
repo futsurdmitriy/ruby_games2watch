@@ -15,6 +15,15 @@ Rails.application.routes.draw do
     post "platforms" => "platforms#create"
     patch "platforms/:id" => "platforms#update"
     delete "platforms/:id" => "platforms#destroy"
+
+    get "modes" => "modes#index"
+    get "modes/new" => "modes#new"
+    get "modes/:id/edit" => "modes#edit"
+    get "modes/:id" => "modes#show"
+    post "modes" => "modes#create"
+    patch "modes/:id" => "modes#update"
+    delete "modes/:id" => "modes#destroy"
+
   end
   get "games/:id" => "games#show"
 end

@@ -1,0 +1,19 @@
+<h2>New mode</h2>
+<% if @new_mode.errors.full_messages %>
+    <% @new_mode.errors.full_messages.each do |error| %>
+        <p style="color: red"><%= error %></p>
+    <% end %>
+<% end %>
+<%= form_with model: @new_mode, url: "/admin/modes", method: "post", local: true do |mode_form| %>
+    <p>
+        <%= label_tag(:name, "Name") %>
+        <%= mode_form.text_field :name, value: @new_mode.name %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Maximum number of players") %>
+        <%= mode_form.number_field :maximum_players, value: @new_mode.maximum_players %>
+    </p>
+    <p>
+        <%= mode_form.submit "Create" %>
+    </p>
+<% end %>

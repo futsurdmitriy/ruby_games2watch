@@ -1,0 +1,7 @@
+<%= content_for(:title, "#{@mode.name}") %>
+<h1><%= @mode.name %></h1>
+<p>
+    <%= label_tag(:name, "Maximum number of players") %>
+    <%= @mode.maximum_players %>
+</p>
+<%= link_to 'Back', :back %>

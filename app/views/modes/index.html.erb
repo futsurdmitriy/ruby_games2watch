@@ -1,0 +1,31 @@
+<% content_for(:title, "Modes") %>
+<h2>Modes List</h2>
+<table>
+    <thead>
+    <tr>
+        <td>Name</td>
+        <td>Max. players</td>
+        <td>Created At</td>
+        <td>Updated At</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+        <% @modes.each do |mode| %>
+            <tr>
+                <td><%= mode.name %></td>
+                <td><%= mode.maximum_players %></td>
+                <td><%= mode.created_at.strftime('%Y-%m-%d %T') %></td>
+                <td><%= mode.updated_at.strftime('%Y-%m-%d %T') %></td>
+                <td>
+                    <a href="/admin/modes/<%= mode.id %>">Show</a> |
+                    <a href="/admin/modes/<%= mode.id %>/edit">Update</a> |
+                    <a href="/admin/modes/<%= mode.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
+                </td>
+            </tr>
+        <% end %>
+        <tr>
+            <td><a href="/admin/modes/new">Create mode</a></td>
+        </tr>
+    </tbody>
+</table>
