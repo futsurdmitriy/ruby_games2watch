@@ -25,14 +25,14 @@
                 <td><%= game.created_at.strftime('%Y-%m-%d %T') %></td>
                 <td><%= game.updated_at.strftime('%Y-%m-%d %T') %></td>
                 <td>
-                    <a href="#">Show</a> |
-                    <a href="#">Update</a> |
-                    <a href="#">Delete</a>
+                    <a href="/games/<%= game.id %>">Show</a> |
+                    <a href="/admin/games/<%= game.id %>/edit">Update</a> |
+                    <a href="/admin/games/<%= game.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
                 </td>
             </tr>
         <% end %>
         <tr>
-            <td><a href="/admin/games/new">Create game</a></td>
+            <td><a href="new">Create game</a></td>
         </tr>
     </tbody>
 </table>

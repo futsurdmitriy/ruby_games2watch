@@ -1,33 +1,33 @@
-<h2>New game</h2>
-<% if flash[:errors] %>
-    <% flash[:errors].each do |error| %>
+<h2>Edit game</h2>
+<% if @game_to_edit.errors.full_messages %>
+    <% @game_to_edit.errors.full_messages.each do |error| %>
         <p style="color: red"><%= error %></p>
     <% end %>
 <% end %>
-<%= form_with model: @new_game, url: "/admin/games", method: "post", local: true do |game_form| %>
+<%= form_with model: @game_to_edit, url: "/admin/games/#{@game_to_edit.id}", method: "patch", local: true do |game_form| %>
     <p>
         <%= label_tag(:name, "Name") %>
-        <%= game_form.text_field :name, value: @new_game.name %>
+        <%= game_form.text_field :name, value: @game_to_edit.name %>
     </p>
     <p>
         <%= label_tag(:critics_rate, "Critics rate") %>
-        <%= game_form.number_field :critics_rate, value: @new_game.critics_rate %>
+        <%= game_form.number_field :critics_rate, value: @game_to_edit.critics_rate %>
     </p>
     <p>
         <%= label_tag(:genre, "Genre") %>
-        <%= game_form.text_field :genre, value: @new_game.genre %>
+        <%= game_form.text_field :genre, value: @game_to_edit.genre %>
     </p>
     <p>
         <%= label_tag(:company, "Company") %>
-        <%= game_form.text_field :company, value: @new_game.company %>
+        <%= game_form.text_field :company, value: @game_to_edit.company %>
     </p>
     <p>
         <%= label_tag(:publisher, "Publisher") %>
-        <%= game_form.text_field :publisher, value: @new_game.publisher %>
+        <%= game_form.text_field :publisher, value: @game_to_edit.publisher %>
     </p>
     <p>
         <%= label_tag(:published_at, "Published at") %>
-        <%= game_form.date_field :published_at, value: @new_game.published_at %>
+        <%= game_form.date_field :published_at, value: @game_to_edit.published_at %>
     </p>
     <p>
         <%= label_tag(:modes, "Modes") %>
@@ -35,7 +35,7 @@
             |mode| [mode.name + " (" + mode.maximum_players.to_s + ")", mode.id]
         } %>
         <%= game_form.select :modes,
-                             options_for_select(modes_array, @new_game.modes.map{|mode| mode.id}),
+                             options_for_select(modes_array, @game_to_edit.modes.map{|mode| mode.id}),
                              { include_blank: false, include_hidden: false },
                              { multiple: true }  %>
     </p>
@@ -48,11 +48,11 @@
                                         {
                                             include_blank: false,
                                             include_hidden: false,
-                                            selected: @new_game.platforms.map{|platform| platform.id}
+                                            selected: @game_to_edit.platforms.map{|platform| platform.id}
                                         },
                                         { multiple: true} %>
     </p>
     <p>
-        <%= game_form.submit "Create" %>
+        <%= game_form.submit "Update" %>
     </p>
 <% end %>

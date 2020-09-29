@@ -1,0 +1,40 @@
+<h1><%= @game.name %></h1>
+<p>
+    <%= label_tag("Critics rate:") %>
+    <%= @game.critics_rate %>
+</p>
+<p>
+    <%= label_tag("Genre:") %>
+    <%= @game.genre %>
+</p>
+<p>
+    <%= label_tag("Company:") %>
+    <%= @game.company %>
+</p>
+<p>
+    <%= label_tag("Publisher:") %>
+    <%= @game.publisher %>
+</p>
+<p>
+    <%= label_tag("Published at:") %>
+    <%= @game.published_at %>
+</p>
+<p>
+    <%= label_tag("Modes:") %>
+    <ul>
+        <% @game.modes.each do |mode| %>
+            <li><%= "#{ mode.name + " (" + mode.maximum_players.to_s + ")" }
+                    #{ ";" unless mode == @game.modes.last }" %></li>
+        <% end %>
+    </ul>
+</p>
+<p>
+    <%= label_tag("Platforms:") %>
+    <ul>
+        <% @game.platforms.each do |platform| %>
+            <li><%= "#{ platform.name }
+                    #{ ";" unless platform == @game.platforms.last }" %></li>
+        <% end %>
+    </ul>
+</p>
+<%= link_to 'Back', :back %>
