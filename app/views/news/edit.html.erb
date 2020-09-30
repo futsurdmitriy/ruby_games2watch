@@ -1,0 +1,33 @@
+<h2>Edit News</h2>
+<% if @news_to_edit.errors.full_messages %>
+    <% @news_to_edit.errors.full_messages.each do |error| %>
+        <p style="color: red"><%= error %></p>
+    <% end %>
+<% end %>
+<%= form_with model: @news_to_edit, url: "/admin/news/#{@news_to_edit.id}", method: "patch", local: true do |news_form| %>
+    <p>
+        <%= news_form.hidden_field name: "user_id", value: session[:user][:id] %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Headline") %>
+        <%= news_form.text_field :headline, value: @news_to_edit.headline %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Image") %>
+        <%= news_form.text :image, value: @news_to_edit.image %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Text") %>
+        <%= news_form.text_area :text, value: @requirement_to_edit.text %>
+    </p>
+    <p>
+        <%= news_form.select :game,
+                                    options_for_select(
+                                        Game.all.map{|game| [game.name, game.id] },
+                                        @news_to_edit.game.id),
+                                    { include_blank: false, include_hidden: false } %>
+    </p>
+    <p>
+        <%= news_form.submit "Create" %>
+    </p>
+<% end %>
