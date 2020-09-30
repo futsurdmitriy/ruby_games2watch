@@ -33,13 +33,29 @@ Rails.application.routes.draw do
     delete "requirements/:id" => "requirements#destroy"
 
     get "users" => "users#index"
-    get "users/new" => "users#new"
+    # get "users/new" => "users#new"
     get "users/:id/edit" => "users#edit"
     get "users/:id" => "users#show"
-    post "users" => "users#create"
     patch "users/:id" => "users#update"
     delete "users/:id" => "users#destroy"
 
+    get "news" => "news#index"
+    get "news/new" => "news#new"
+    get "news/:id/edit" => "news#edit"
+    get "news/:id" => "news#show"
+    post "news" => "news#create"
+    patch "news/:id" => "news#update"
+    delete "news/:id" => "news#destroy"
+
   end
+
   get "games/:id" => "games#show"
+  post "users" => "users#create"
+  get "sign-in" => "users#sign_in"
+  get "sign-up" => "users#new"
+
+  get "/" => "pages#home"
+  get "about-us" => "pages#about_us"
+  get "contact-us" => "pages#contact_us"
+
 end
