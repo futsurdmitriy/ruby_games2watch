@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_30_085210) do
+ActiveRecord::Schema.define(version: 2020_09_30_193238) do
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
@@ -65,7 +65,10 @@ ActiveRecord::Schema.define(version: 2020_09_30_085210) do
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "author"
+    t.integer "user_id", null: false
+    t.integer "game_id", null: false
+    t.index ["game_id"], name: "index_news_on_game_id"
+    t.index ["user_id"], name: "index_news_on_user_id"
   end
 
   create_table "platforms", force: :cascade do |t|
@@ -103,5 +106,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_085210) do
   add_foreign_key "game_modes", "modes"
   add_foreign_key "game_platforms", "games"
   add_foreign_key "game_platforms", "platforms"
+  add_foreign_key "news", "games"
+  add_foreign_key "news", "users"
   add_foreign_key "requirements", "games"
 end
