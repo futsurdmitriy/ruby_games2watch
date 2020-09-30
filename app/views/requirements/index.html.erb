@@ -1,0 +1,41 @@
+<% content_for(:title, "Requirements") %>
+<h2>Requirements List</h2>
+<table>
+    <thead>
+    <tr>
+        <td>Type</td>
+        <td>Operating system</td>
+        <td>RAM</td>
+        <td>GPU</td>
+        <td>CPU</td>
+        <td>Free Space</td>
+        <td>Game</td>
+        <td>Created At</td>
+        <td>Updated At</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+        <% @requirements.each do |requirement| %>
+            <tr>
+                <td><%= requirement.req_type %></td>
+                <td><%= requirement.operating_system %></td>
+                <td><%= requirement.ram %></td>
+                <td><%= requirement.gpu %></td>
+                <td><%= requirement.cpu %></td>
+                <td><%= requirement.free_space %></td>
+                <td><%= Game.find(requirement.game_id).name %></td>
+                <td><%= requirement.created_at.strftime('%Y-%m-%d %T') %></td>
+                <td><%= requirement.updated_at.strftime('%Y-%m-%d %T') %></td>
+                <td>
+                    <a href="/admin/requirements/<%= requirement.id %>">Show</a> |
+                    <a href="/admin/requirements/<%= requirement.id %>/edit">Update</a> |
+                    <a href="/admin/requirements/<%= requirement.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
+                </td>
+            </tr>
+        <% end %>
+        <tr>
+            <td><a href="/admin/requirements/new">Create requirement</a></td>
+        </tr>
+    </tbody>
+</table>

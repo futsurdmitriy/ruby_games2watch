@@ -24,6 +24,14 @@ Rails.application.routes.draw do
     patch "modes/:id" => "modes#update"
     delete "modes/:id" => "modes#destroy"
 
+    get "requirements" => "requirements#index"
+    get "requirements/new" => "requirements#new"
+    get "requirements/:id/edit" => "requirements#edit"
+    get "requirements/:id" => "requirements#show"
+    post "requirements" => "requirements#create"
+    patch "requirements/:id" => "requirements#update"
+    delete "requirements/:id" => "requirements#destroy"
+
   end
   get "games/:id" => "games#show"
 end

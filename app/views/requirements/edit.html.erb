@@ -1,0 +1,43 @@
+<h2>Edit platform</h2>
+<% if @requirement_to_edit.errors.full_messages %>
+    <% @requirement_to_edit.errors.full_messages.each do |error| %>
+        <p style="color: red"><%= error %></p>
+    <% end %>
+<% end %>
+<%= form_with model: @requirement_to_edit, url: "/admin/requirements/#{@requirement_to_edit.id}", method: "patch", local: true do |requirement_form| %>
+    <p>
+        <%= label_tag(:name, "Type") %>
+        <%= requirement_form.text_field :req_type, value: @requirement_to_edit.req_type %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Operating system") %>
+        <%= requirement_form.text_field :operating_system, value: @requirement_to_edit.operating_system %>
+    </p>
+    <p>
+        <%= label_tag(:name, "RAM (Gb)") %>
+        <%= requirement_form.number_field :ram, value: @requirement_to_edit.ram %>
+    </p>
+    <p>
+        <%= label_tag(:name, "GPU") %>
+        <%= requirement_form.text_field :gpu, value: @requirement_to_edit.gpu %>
+    </p>
+    <p>
+        <%= label_tag(:name, "CPU") %>
+        <%= requirement_form.text_field :cpu, value: @requirement_to_edit.cpu %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Free Space (Gb)") %>
+        <%= requirement_form.number_field :free_space, value: @requirement_to_edit.free_space %>
+    </p>
+    <%#= binding.pry %>
+    <p>
+        <%= requirement_form.select :game,
+                                    options_for_select(
+                                        Game.all.map{|game| [game.name, game.id] },
+                                        @requirement_to_edit.game.id),
+                                    { include_blank: false, include_hidden: false } %>
+    </p>
+    <p>
+        <%= requirement_form.submit "Create" %>
+    </p>
+<% end %>
