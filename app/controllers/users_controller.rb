@@ -1,16 +1,21 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:index, :create, :show, :destroy]
   def index
     @users = User.all
   end
 
-  def new
+  def sign_up
     @new_user = User.new
+  end
+
+  def sign_in
   end
 
   def create
     @new_user = User.new(user_params)
     @new_user.role = "user" unless params[:user][:role]
     if @new_user.save
+      session[:user_id] = @new_user.id
       redirect_to "/admin/users"
     else
       flash[:errors] = @new_user.errors.full_messages
