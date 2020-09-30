@@ -32,6 +32,14 @@ Rails.application.routes.draw do
     patch "requirements/:id" => "requirements#update"
     delete "requirements/:id" => "requirements#destroy"
 
+    get "users" => "users#index"
+    get "users/new" => "users#new"
+    get "users/:id/edit" => "users#edit"
+    get "users/:id" => "users#show"
+    post "users" => "users#create"
+    patch "users/:id" => "users#update"
+    delete "users/:id" => "users#destroy"
+
   end
   get "games/:id" => "games#show"
 end

@@ -1,0 +1,35 @@
+<h2>Edit user</h2>
+<% if @user_to_edit.errors.full_messages %>
+    <% @user_to_edit.errors.full_messages.each do |error| %>
+        <p style="color: red"><%= error %></p>
+    <% end %>
+<% end %>
+<%= form_with model: @user_to_edit, url: "/admin/users/#{@user_to_edit.id}", method: "patch", local: true do |user_form| %>
+    <p>
+        <%= label_tag(:name, "First Name") %>
+        <%= user_form.text_field :first_name, value: @user_to_edit.first_name %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Last Name:") %>
+        <%= user_form.text_field :last_name, value: @user_to_edit.last_name %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Email:") %>
+        <%= user_form.email_field :email, value: @user_to_edit.email %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Role:") %>
+        <%= user_form.text_field :role, value: @user_to_edit.role %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Password:") %>
+        <%= user_form.password_field :password %>
+    </p>
+    <p>
+        <%= label_tag(:name, "Confirm password:") %>
+        <%= user_form.password_field :password_confirmation %>
+    </p>
+    <p>
+        <%= user_form.submit "Update" %>
+    </p>
+<% end %>
