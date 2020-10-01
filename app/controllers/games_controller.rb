@@ -54,7 +54,7 @@ class GamesController < ApplicationController
       if @game_to_edit.update(game_params) &&
           @game_to_edit.update(platforms: Platform.find(game_to_edit_platforms)) &&
           @game_to_edit.update(modes: Mode.find(game_to_edit_modes))
-        redirect_to "/admin/games"
+        redirect_to "/games"
       else
         render :edit
       end
