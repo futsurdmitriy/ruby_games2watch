@@ -1,4 +1,9 @@
 class RequirementsController < ApplicationController
+
+  before_action do
+    check_user_right([User::ADMIN_ROLE])
+  end
+
   def index
     @requirements = Requirement.all
   end

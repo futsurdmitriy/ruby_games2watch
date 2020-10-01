@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:index, :create, :show, :destroy]
+
+  before_action only: [:index, :create, :show, :destroy] do
+    check_user_right([User::ADMIN_ROLE])
+  end
+
   def index
     @users = User.all
   end
@@ -9,6 +13,10 @@ class UsersController < ApplicationController
   end
 
   def sign_in
+    if user_logged_in
+      flash[:errors] = ["You have singed-in already"]
+      redirect_back fallback_location: root_path
+    end
   end
 
   def create

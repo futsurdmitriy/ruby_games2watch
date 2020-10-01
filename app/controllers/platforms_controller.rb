@@ -1,4 +1,9 @@
 class PlatformsController < ApplicationController
+
+  before_action do
+    check_user_right([User::ADMIN_ROLE])
+  end
+
   def index
     @platforms = Platform.all
   end

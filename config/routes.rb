@@ -65,6 +65,6 @@ Rails.application.routes.draw do
   get "about-us" => "pages#about_us"
   get "contact-us" => "pages#contact_us"
   resources :sessions, only: [:create]
-  get "log_out" => "sessions#destroy"
+  get "log-out" => "sessions#destroy"
 
 end

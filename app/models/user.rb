@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+
+  ADMIN_ROLE = "admin"
+  EDITOR_ROLE = "editor"
+  USER_ROLE = "user"
+
   has_secure_password
   has_many :comments
   has_many :news
