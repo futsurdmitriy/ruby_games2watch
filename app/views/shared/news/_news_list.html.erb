@@ -1,0 +1,23 @@
+<div class="row">
+    <% @latest_news.each do |news| %>
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <%= image_tag news.image, { class: "card-img-top" } %>
+                <div class="card-body">
+                    <h5 class="card-title"><%= news.headline %></h5>
+                    <p class="card-text">
+                        <%= news.text %>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><label>Published: </label><%= news.created_at.strftime('%Y-%m-%d') %></li>
+                    <li class="list-group-item"><label>Author: </label><%= news.user.first_name + " " + news.user.last_name %></li>
+                    <li class="list-group-item"><label>Game: </label><%= news.game.name %></li>
+                </ul>
+                <div class="card-body">
+                    <a href="news/<%= news.id %>" class="card-link">More</a>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
