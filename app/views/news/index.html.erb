@@ -27,7 +27,7 @@
                 <td><%= news_item.created_at.strftime('%Y-%m-%d %T') %></td>
                 <td><%= news_item.updated_at.strftime('%Y-%m-%d %T') %></td>
                 <td>
-                    <a href="/admin/news/<%= news_item.id %>">Show</a> |
+                    <a href="/news/<%= news_item.id %>">Show</a> |
                     <a href="/admin/news/<%= news_item.id %>/edit">Update</a> |
                     <a href="/admin/news/<%= news_item.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
                 </td>
