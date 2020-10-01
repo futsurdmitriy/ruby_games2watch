@@ -10,6 +10,10 @@
         <%= game_form.text_field :name, value: @new_game.name %>
     </p>
     <p>
+        <%= label_tag(:image, "Image") %>
+        <%= game_form.text_field :image, value: @new_game.image %>
+    </p>
+    <p>
         <%= label_tag(:critics_rate, "Critics rate") %>
         <%= game_form.number_field :critics_rate, value: @new_game.critics_rate %>
     </p>

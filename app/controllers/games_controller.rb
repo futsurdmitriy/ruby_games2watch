@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
 
-  before_action only: [:index, :new, :create, :edit, :update, :destroy] do
+  before_action only: [:new, :create, :edit, :update, :destroy] do
     check_user_right([User::ADMIN_ROLE])
   end
 
@@ -73,7 +73,7 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:name, :genre,
-                                 :published_at, :company, :publisher, :critics_rate)
+                                 :published_at, :company, :publisher, :critics_rate, :image)
   end
 
 

@@ -7,7 +7,7 @@ class Game < ApplicationRecord
   has_many :platforms, through: :game_platforms, :dependent => :destroy
 
   validates :name, :company, :genre, :published_at,
-            :critics_rate, :publisher,
+            :critics_rate, :publisher, :image,
             presence: true
   validates_presence_of :modes, :platforms
 end

@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
 
-  before_action only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+  before_action only: [:new, :create, :edit, :update, :destroy] do
     check_user_right([User::ADMIN_ROLE, User::EDITOR_ROLE])
   end
 

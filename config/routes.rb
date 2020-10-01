@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   scope path: "/admin" do
 
-    resources :games
-    # get "games" => "games#index"
-    # get "games/new" => "games#new"
-    # get "games/:id/edit" => "games#edit"
-    # post "games" => "games#create"
-    # patch "games/:id" => "games#update"
-    # delete "games/:id" => "games#destroy"
+    # resources :games
+    get "games/new" => "games#new"
+    get "games/:id/edit" => "games#edit"
+    post "games" => "games#create"
+    patch "games/:id" => "games#update"
+    delete "games/:id" => "games#destroy"
 
     resources :platforms
     # get "platforms" => "platforms#index"
@@ -44,14 +43,12 @@ Rails.application.routes.draw do
     # patch "users/:id" => "users#update"
     # delete "users/:id" => "users#destroy"
 
-    resources :news
-    # get "news" => "news#index"
-    # get "news/new" => "news#new"
-    # get "news/:id/edit" => "news#edit"
-    # get "news/:id" => "news#show"
-    # post "news" => "news#create"
-    # patch "news/:id" => "news#update"
-    # delete "news/:id" => "news#destroy"
+    # resources :news
+    get "news/new" => "news#new"
+    get "news/:id/edit" => "news#edit"
+    post "news" => "news#create"
+    patch "news/:id" => "news#update"
+    delete "news/:id" => "news#destroy"
 
   end
 
@@ -66,5 +63,8 @@ Rails.application.routes.draw do
   get "contact-us" => "pages#contact_us"
   resources :sessions, only: [:create]
   get "log-out" => "sessions#destroy"
+  get "news/:id" => "news#show"
+  get "games" => "games#index", as: "free_games_path"
+  get "news" => "news#index", as: "free_news_path"
 
 end

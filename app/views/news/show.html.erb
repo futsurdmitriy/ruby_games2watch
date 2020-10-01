@@ -1,31 +1,24 @@
-<%= content_for(:title, "#{@requirement.req_type}: #{@requirement.game.name}") %>
-<h1><%= "#{@requirement.req_type} requirement for: #{@requirement.game.name}" %></h1>
+<%= content_for(:title, @news.headline) %>
 <p>
-    <%= label_tag("Type:") %>
-    <%= @requirement.req_type %>
+    <%= label_tag("Headline:") %>
+    <%= @news.headline %>
 </p>
 <p>
-    <%= label_tag("Operating system:") %>
-    <%= @requirement.operating_system %>
+    <%= label_tag("Image:") %>
+    <% if @news.image %>
+        <%= image_tag @news.image, size: 150 %>
+    <% end %>
 </p>
 <p>
-    <%= label_tag("RAM:") %>
-    <%= @requirement.ram %>
+    <%= label_tag("Text:") %>
+    <%= @news.text %>
 </p>
 <p>
-    <%= label_tag("GPU:") %>
-    <%= @requirement.gpu %>
-</p>
-<p>
-    <%= label_tag("CPU:") %>
-    <%= @requirement.cpu %>
-</p>
-<p>
-    <%= label_tag("Free Space:") %>
-    <%= @requirement.free_space %>
+    <%= label_tag("Author:") %>
+    <%= @news.user.first_name + " " + @news.user.last_name  %>
 </p>
 <p>
     <%= label_tag("Game:") %>
-    <%= @requirement.game.name %>
+    <%= @news.game.name %>
 </p>
 <%= link_to 'Back', :back %>

@@ -1,6 +1,76 @@
-<h1><%= controller.controller_name + " " +controller.action_name %></h1>
 <% if flash[:errors] %>
     <% flash[:errors].each do |error| %>
         <p class="text-danger"><%= error %></p>
     <% end %>
 <% end %>
+
+<div class="container marketing">
+
+    <h1>Leading Companies</h1>
+    <hr class="featurette-divider">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="text-center">
+                <img style="height: 140px;" src="https://www.bestdesigns.co/uploads/inspiration_images/7639/990__1521662324_188_UbisoftLogo.jpg">
+                <h2>Ubisoft</h2>
+            </div>
+            <p>Ubisoft Entertainment SA is a French video game company headquartered in Montreuil with several
+                development studios across the world.
+                It publishes games for several video game franchises, including Rayman, Raving Rabbids, Prince of
+                Persia, Assassin's Creed, Far Cry, Just Dance, and the Tom Clancy's series. </p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="text-center">
+                <img style="height: 140px;" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Rockstar_Games_Logo.svg">
+                <h2>Rockstar</h2>
+            </div>
+            <p>Rockstar Games, Inc. is an American video game publisher based in New York City. The company was
+                established in December 1998 as a subsidiary of Take-Two Interactive, using the assets Take-Two had
+                previously acquired from BMG Interactive.</p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <div class="text-center">
+                <img style="height: 140px;" src="https://www.cdprojekt.com/en/wp-content/uploads-en/2016/01/cdp_004-1024x760-1024x760.jpg">
+                <h2>CD Projekt</h2>
+            </div>
+            <p>CD Projekt S.A. is a Polish video game developer, publisher and distributor based in Warsaw, founded in
+                May 1994 by Marcin Iwiński and Michał Kiciński. Iwiński and Kiciński were video game retailers before
+                they founded the company, which initially acted as a distributor of foreign video games for the domestic
+                market.</p>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+    <h1>Latest Games</h1>
+    <hr class="featurette-divider">
+
+    <% @latest_games.each do |game, index| %>
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading"><%= game.name %>
+                    <span class="text-muted">(<%= game.published_at.strftime('%Y') %>)</span></h2>
+                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
+                    semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
+                    commodo.</p>
+            </div>
+            <div class="col-md-5">
+                <% if game.image %>
+                    <%= image_tag game.image, {width: "100%", height: "100%"}%>
+                <% end %>
+            </div>
+        </div>
+        <% if game != @latest_games.last %>
+            <hr class="featurette-divider">
+        <% end %>
+    <% end %>
+</div><!-- /.container -->
+
+<h1>Latest News</h1>
+<hr class="featurette-divider">
+
+<div class="container">
+    <%= render partial: "shared/news/news_list", params: @news %>
+</div>
