@@ -1,4 +1,9 @@
 class NewsController < ApplicationController
+
+  before_action only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    check_user_right([User::ADMIN_ROLE, User::EDITOR_ROLE])
+  end
+
   def index
     @news = News.all
   end
@@ -13,8 +18,11 @@ class NewsController < ApplicationController
       @new_news.game = Game.find(params[:news][:game])
     end
      # Todo: make it via session to assign creator id
-    if session[:user][:id]
-      @new_news.user = User.find(session[:user][:id])
+    # if session[:user][:id]
+    #   @new_news.user = User.find(session[:user][:id])
+    # end
+    if params[:news][:user]
+       @new_news.user = User.find(params[:news][:user])
     end
     if @new_news.save
       redirect_to "/admin/news"

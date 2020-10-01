@@ -18,7 +18,7 @@
     </p>
     <p>
         <%= label_tag(:name, "Text") %>
-        <%= news_form.text_area :text, value: @requirement_to_edit.text %>
+        <%= news_form.text_area :text, value: @news_to_edit.text %>
     </p>
     <p>
         <%= news_form.select :game,
@@ -26,6 +26,13 @@
                                         Game.all.map{|game| [game.name, game.id] },
                                         @news_to_edit.game.id),
                                     { include_blank: false, include_hidden: false } %>
+    </p>
+    <p>
+        <%= news_form.select :user,
+                             options_for_select(
+                                 User.all.map{|user| [user.name, user.id] },
+                                 @news_to_edit.user.id),
+                             { include_blank: false, include_hidden: false } %>
     </p>
     <p>
         <%= news_form.submit "Create" %>

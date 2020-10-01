@@ -1,43 +1,37 @@
-<h2>New requirement</h2>
-<% if @new_requirement.errors.full_messages %>
-    <% @new_requirement.errors.full_messages.each do |error| %>
+<h2>New news</h2>
+<% if @new_news.errors.full_messages %>
+    <% @new_news.errors.full_messages.each do |error| %>
         <p style="color: red"><%= error %></p>
     <% end %>
 <% end %>
-<%= form_with model: @new_requirement, url: "/admin/requirements", method: "post", local: true do |requirement_form| %>
+<%= form_with model: @new_news, url: "/admin/news", method: "post", local: true do |news_form| %>
     <p>
-        <%= label_tag(:name, "Type") %>
-        <%= requirement_form.text_field :req_type, value: @new_requirement.req_type %>
+        <%= label_tag(:name, "Headline") %>
+        <%= news_form.text_field :headline, value: @new_news.headline %>
     </p>
     <p>
-        <%= label_tag(:name, "Operating system") %>
-        <%= requirement_form.text_field :operating_system, value: @new_requirement.operating_system %>
+        <%= label_tag(:name, "Image") %>
+        <%= news_form.text_field :image, value: @new_news.image %>
     </p>
     <p>
-        <%= label_tag(:name, "RAM (Gb)") %>
-        <%= requirement_form.number_field :ram, value: @new_requirement.ram %>
+        <%= label_tag(:name, "Text") %>
+        <%= news_form.text_area :text, value: @new_news.text %>
     </p>
     <p>
-        <%= label_tag(:name, "GPU") %>
-        <%= requirement_form.text_field :gpu, value: @new_requirement.gpu %>
-    </p>
-    <p>
-        <%= label_tag(:name, "CPU") %>
-        <%= requirement_form.text_field :cpu, value: @new_requirement.cpu %>
-    </p>
-    <p>
-        <%= label_tag(:name, "Free Space (Gb)") %>
-        <%= requirement_form.number_field :free_space, value: @new_requirement.free_space %>
-    </p>
-    <%#= binding.pry %>
-    <p>
-        <%= requirement_form.select :game,
+        <%= news_form.select :game,
                              options_for_select(
                                  Game.all.map{|game| [game.name, game.id] },
-                                 @new_requirement.game),
+                                 @new_news.game),
                              { include_blank: false, include_hidden: false } %>
     </p>
     <p>
-        <%= requirement_form.submit "Create" %>
+        <%= news_form.select :user,
+                             options_for_select(
+                                 User.all.map{|user| [user.first_name + " " + user.last_name , user.id] },
+                                 @new_news.user),
+                             { include_blank: false, include_hidden: false } %>
+    </p>
+    <p>
+        <%= news_form.submit "Create" %>
     </p>
 <% end %>
