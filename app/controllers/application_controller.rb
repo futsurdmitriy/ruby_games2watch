@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  before_action :get_env
+
   def current_user
     User.find(session[:user_id]) if session[:user_id]
   end
@@ -41,5 +44,9 @@ class ApplicationController < ActionController::Base
     else
       false
     end
+  end
+
+  def get_env
+    @env = Rails.env
   end
 end
