@@ -25,7 +25,7 @@ class NewsController < ApplicationController
        @new_news.user = User.find(params[:news][:user])
     end
     if @new_news.save
-      redirect_to "/admin/news"
+      redirect_to "/news"
     else
       flash[:errors] = @new_news.errors.full_messages
       render :new
@@ -36,7 +36,7 @@ class NewsController < ApplicationController
     if params[:id]
       @news = News.find(params[:id])
     else
-      redirect_to "/admin/news"
+      redirect_to "/news"
     end
   end
 
@@ -44,7 +44,7 @@ class NewsController < ApplicationController
     if params[:id]
       @news_to_edit = News.find(params[:id])
     else
-      redirect_to "/admin/news"
+      redirect_to "/news"
     end
   end
 
@@ -54,7 +54,7 @@ class NewsController < ApplicationController
       news_to_edit_game = Integer(params[:news][:game])
       if @news_to_edit.update(news_params) &&
           @news_to_edit.update(game: Game.find(news_to_edit_game))
-        redirect_to "/admin/news"
+        redirect_to "/news"
       else
         render :edit
       end
@@ -65,7 +65,7 @@ class NewsController < ApplicationController
     if params[:id]
       news = News.find(params[:id])
       news.destroy
-      redirect_to '/admin/news'
+      redirect_to '/news'
     end
   end
 

@@ -23,7 +23,7 @@ class GamesController < ApplicationController
       @new_game.modes = Mode.find(params[:game][:modes])
     end
     if @new_game.save
-      redirect_to "/admin/games"
+      redirect_to "/games"
     else
       flash[:errors] = @new_game.errors.full_messages
       render :new
@@ -34,7 +34,7 @@ class GamesController < ApplicationController
     if params[:id]
       @game = Game.find(params[:id])
     else
-      redirect_to "/admin/games"
+      redirect_to "/games"
     end
   end
 
@@ -42,7 +42,7 @@ class GamesController < ApplicationController
     if params[:id]
       @game_to_edit = Game.find(params[:id])
     else
-      redirect_to "/admin/games"
+      redirect_to "/games"
     end
   end
 
@@ -65,7 +65,7 @@ class GamesController < ApplicationController
     if params[:id]
       game = Game.find(params[:id])
       game.destroy
-      redirect_to '/admin/games'
+      redirect_to '/games'
     end
   end
 
