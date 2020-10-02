@@ -6,7 +6,7 @@ class CreateGames < ActiveRecord::Migration[6.0]
       t.string :genre
       t.string :company
       t.string :publisher
-      t.references :requirement, null: false, foreign_key: true
+      t.references :requirements, null: false, foreign_key: true
 
       t.timestamps
     end
